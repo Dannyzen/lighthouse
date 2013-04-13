@@ -1,3 +1,4 @@
+p
 # Lighthouse
 
 -
@@ -29,7 +30,7 @@ Fogbugz has a nifty [URL Trigger] (http://fogbugz.stackexchange.com/questions/61
 <img src="https://github.com/dannyzen/lighthouse/raw/master/img/cmd.jpg" />
 
     Set your fogbugz url trigger to: 
-        http://yourserver.com:1337/ticket?case_number={CaseNumber}&date={EventTime}&editor={PersonEditingName}&time={EventTime}&project_name={ProjectName}&status={StatusName}&title={Title}&week=getWeek()
+        http://yourserver.com:1337/ticket?case_number={CaseNumber}&date={EventTime}&editor={PersonEditingName}&time={EventTime}&project_name={ProjectName}&status={StatusName}&title={Title}
 
 <img src="https://github.com/dannyzen/lighthouse/raw/master/img/fb.jpg" />
 
