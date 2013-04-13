@@ -11,7 +11,7 @@ connection = Connection('localhost', 27017)
 db = connection.lighthouse
 
 @route('/ticket', method='POST')
-def diplay_ticket():
+def add_ticket():
     case_number = request.query.case_number
     editor = request.query.editor
     time = request.query.time
