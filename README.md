@@ -10,7 +10,7 @@ Lighthouse is a service built on [Python Bottle] (http://bottlepy.org/docs/dev/)
 ### Background
 
 
-Fogbugz has a nifty [URL Trigger] (http://fogbugz.stackexchange.com/questions/6183/url-trigger-integrate-with-virtually-any-outside-system) which fires off a POST or GET to an external URL when an event occurs. (IE: When a case is opened and assigned to a specific person.) Lighthouse acts the destination for the trigger, storing information into a mongodb document. 
+Fogbugz has a nifty [URL Trigger] (http://fogbugz.stackexchange.com/questions/6183/url-trigger-integrate-with-virtually-any-outside-system) which fires off a POST or GET to an external URL when an event occurs. (IE: When a case is opened and assigned to a specific person.) Lighthouse acts as the destination for the trigger, storing information into a mongodb document. 
 
 -
 
