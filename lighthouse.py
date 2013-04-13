@@ -10,8 +10,6 @@ from pymongo import Connection
 connection = Connection('localhost', 27017)
 db = connection.lighthouse
 
-
-
 @route('/ticket', method='POST')
 def diplay_ticket():
     case_number = request.query.case_number
@@ -23,4 +21,5 @@ def diplay_ticket():
     week = getWeek()
     month = getMonth()
     db_response=db['ticket'].save({"case_number":case_number,"editor":editor,"time":time,"project_name":project_name,"status":status,"title":title,"week":week, "month":getMonth()})
+
 run(host='0.0.0.0', port=1337)
