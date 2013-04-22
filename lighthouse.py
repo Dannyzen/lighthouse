@@ -22,5 +22,17 @@ def add_ticket():
     week = getWeek()
     month = getMonth()
     db_response=db['ticket'].save({"case_number":case_number,"editor":editor,"time":time,"project_name":project_name,"status":status,"title":title,"week":getWeek(), "month":getMonth()})
-    getTicketInfo(case_number)
+
+@route('/new_related', method='POST')
+def append_related():
+    case_number = request.query.case_number
+    editor = request.query.editor
+    time = request.query.time
+    project_name = request.query.project_name
+    status = request.query.status
+    title = request.query.title
+    week = getWeek()
+    db_response=db['related_ticket'].save({"case_number":case_number,"editor":editor,"time":time,"project_name":project_name,"status":status,"title":title,"week":getWeek(), "month":getMonth()})
+    getTicketInfo(case_number,editor,title)
+
 run(host='0.0.0.0', port=1337)
