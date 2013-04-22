@@ -6,11 +6,12 @@ import bottle
 from helpers import *
 from bottle import route, run, request, abort
 from pymongo import Connection
- 
+from related import getTicketInfo
+
 connection = Connection('localhost', 27017)
 db = connection.lighthouse
 
-@route('/ticket', method='POST')
+@route('/assigned_to_qa', method='POST')
 def add_ticket():
     case_number = request.query.case_number
     editor = request.query.editor
@@ -21,5 +22,5 @@ def add_ticket():
     week = getWeek()
     month = getMonth()
     db_response=db['ticket'].save({"case_number":case_number,"editor":editor,"time":time,"project_name":project_name,"status":status,"title":title,"week":getWeek(), "month":getMonth()})
-
+    getTicketInfo(case_number)
 run(host='0.0.0.0', port=1337)
