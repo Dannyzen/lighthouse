@@ -23,7 +23,7 @@ def add_ticket():
     month = getMonth()
     db_response=db['ticket'].save({"case_number":case_number,"editor":editor,"time":time,"project_name":project_name,"status":status,"title":title,"week":getWeek(), "month":getMonth()})
 
-@route('/new_related', method='POST')
+@route('/related_ticket', method='POST')
 def append_related():
     case_number = request.query.case_number
     editor = request.query.editor
