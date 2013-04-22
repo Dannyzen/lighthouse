@@ -8,12 +8,12 @@ from BeautifulSoup import BeautifulSoup
 
 def getTicketInfo(new_ticket,editor,title):
     response = fogbugz.search(q=new_ticket,cols='plugin_customfields')
-    evalField(new_ticket,response)
+    evalField(new_ticket,response,title,editor)
 
 def evalField(new_ticket,response,editor,title):
     try:
         ticket_related =  response.case.plugin_customfields_at_fogcreek_com_relatedxcaset117.string.encode('UTF-8')
-        updateRelated(new_ticket,ticket_related)
+        updateRelated(new_ticket,ticket_related,editor,title)
     except AttributeError:
         print "Ticket does not have a related case"
         raise
