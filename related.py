@@ -21,6 +21,7 @@ def evalField(new_ticket,response,editor,title):
     print "debug " + ticket_related
 
 def updateRelated(new_ticket,ticket_related,editor,title):
+    print new_ticket
     response = fogbugz.edit(ixBug=ticket_related,sEvent=('case %s (%s) has been opened by %s' % (new_ticket, editor, title)))
 
 if hasattr(fbSettings,'TOKEN'):
