@@ -6,7 +6,7 @@ import bottle
 from helpers import *
 from bottle import route, run, request, abort
 from pymongo import Connection
-from related import getTicketInfo
+from related import getTicketInfo,checkTicket
 
 connection = Connection('localhost', 27017)
 db = connection.lighthouse
@@ -23,8 +23,8 @@ def add_ticket():
     month = getMonth()
     db_response=db['ticket'].save({"case_number":case_number,"editor":editor,"time":time,"project_name":project_name,"status":status,"title":title,"week":getWeek(), "month":getMonth()})
 
-@route('/related_ticket', method='POST')
-def append_related():
+@route('/related_ticket_open', method='POST')
+def open_related():
     case_number = request.query.case_number
     editor = request.query.editor
     time = request.query.time
@@ -33,6 +33,19 @@ def append_related():
     title = request.query.title
     week = getWeek()
     db_response=db['related_ticket'].save({"case_number":case_number,"editor":editor,"time":time,"project_name":project_name,"status":status,"title":title,"week":getWeek(), "month":getMonth()})
-    getTicketInfo(case_number,editor,title)
+    #Hacky.
+    case_number = new_ticket 
+    kitIt(new_ticket,editor,title)
 
-run(host='0.0.0.0', port=1337)
+@route('/related_ticket_edit', method='POST')
+def edit_related():
+    case_number = request.query.case_number
+    editor = request.query.editor
+    time = request.query.time
+    project_name = request.query.project_name
+    status = request.query.status
+    title = request.query.title
+    week = getWeek()
+    checkTicket(case_number,editor,title)
+
+run(host='0.0.0.0', port=1339)
