@@ -7,6 +7,7 @@ import pprint
 from BeautifulSoup import BeautifulSoup
 from pymongo import Connection
 
+#consider a setting file
 connection = Connection('localhost', 27017)
 db = connection.lighthouse
 
@@ -38,12 +39,14 @@ def getRelatedTicket(new_ticket,editor,title):
     #Todo - when this is run in isolation it returns a wild xml object. we can use the response.case.plugin... to flip this to a utf-8 string and then compare it to getRelatedProperty to build functionality for the case where a ticket related case is changed from '1' to '2'
     response = fogbugz.search(q=new_ticket,cols='plugin_customfields')
     return response
-
+    
+"""
 def getRelatedProperty(new_ticket):
     """Not in use"""
     db_entry = db['related_ticket'].find({"case_number":new_ticket})
     for ticket in db_entry:
         return ticket["related_to"]
+"""
 
 def updateRelated(new_ticket,ticket_related,editor,title):
     print "-\n\-" + new_ticket
