@@ -47,7 +47,6 @@ def checkTicket(new_ticket,editor,title):
         kickIt(new_ticket,editor,title)
 
 def getRelatedTicket(new_ticket):   
-    #Todo - when this is run in isolation it returns a wild xml object. we can use the response.case.plugin... to flip this to a utf-8 string and then compare it to getRelatedProperty to build functionality for the case where a ticket related case is changed from '1' to '2'
     response = fogbugz.search(q=new_ticket,cols='plugin_customfields')
     return response
 
@@ -59,7 +58,8 @@ def ticketToString(new_ticket):
     except AttributeError:
         colorPrint(0,"This ticket has no related tickets")
         raise
-
+"""
+#TODO
 def getRelatedProperty(new_ticket):
     db_entry = db['related_ticket'].find({"case_number":new_ticket})
     for ticket in db_entry:
@@ -72,6 +72,7 @@ def checkDupe(db_field,ticket_related):
     else:
         print "no, update with the new db field"
         return False
+"""
 
 def updateRelated(new_ticket,ticket_related,editor,title):
     colorPrint(1, "updating " + ticket_related + " with " + new_ticket)
