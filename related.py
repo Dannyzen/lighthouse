@@ -42,7 +42,7 @@ def getRelatedTicket(new_ticket,editor,title):
     
 """
 def getRelatedProperty(new_ticket):
-    """Not in use"""
+    #not yet completed 
     db_entry = db['related_ticket'].find({"case_number":new_ticket})
     for ticket in db_entry:
         return ticket["related_to"]
