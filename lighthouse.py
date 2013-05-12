@@ -34,7 +34,7 @@ def open_related():
     week = getWeek()
     db_response=db['related_ticket'].save({"case_number":case_number,"editor":editor,"time":time,"project_name":project_name,"status":status,"title":title,"week":getWeek(), "month":getMonth()})
     #Hacky.
-    case_number = new_ticket 
+    new_ticket = case_number 
     kickIt(new_ticket,editor,title)
 
 @route('/related_ticket_edit', method='POST')
@@ -48,4 +48,4 @@ def edit_related():
     week = getWeek()
     checkTicket(case_number,editor,title)
 
-run(host='0.0.0.0', port=1339)
+run(host='0.0.0.0', port=1337)
