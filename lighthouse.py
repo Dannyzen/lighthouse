@@ -48,4 +48,4 @@ def edit_related():
     week = getWeek()
     checkTicket(case_number,editor,title)
 
-run(host='0.0.0.0', port=1339)
+run(host='0.0.0.0', port=1337)
