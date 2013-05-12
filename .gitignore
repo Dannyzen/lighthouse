@@ -1,2 +1,3 @@
 *.pyc
+ligthouse_dev/*
 fbSettings.py
