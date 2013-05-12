@@ -6,7 +6,7 @@ import bottle
 from helpers import *
 from bottle import route, run, request, abort
 from pymongo import Connection
-from related import getTicketInfo,checkTicket
+from related import kickIt, checkTicket 
 
 connection = Connection('localhost', 27017)
 db = connection.lighthouse
@@ -35,7 +35,7 @@ def open_related():
     db_response=db['related_ticket'].save({"case_number":case_number,"editor":editor,"time":time,"project_name":project_name,"status":status,"title":title,"week":getWeek(), "month":getMonth()})
     #Hacky.
     case_number = new_ticket 
-    kitIt(new_ticket,editor,title)
+    kickIt(new_ticket,editor,title)
 
 @route('/related_ticket_edit', method='POST')
 def edit_related():
