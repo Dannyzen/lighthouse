@@ -3,10 +3,12 @@
 
 import json
 import bottle
+from bottle import redirect
 from helpers import *
 from bottle import route, run, request, abort
 from pymongo import Connection
 from related import kickIt, checkTicket 
+from sailale import purchaseCall, emailCall 
 
 connection = Connection('localhost', 27017)
 db = connection.lighthouse
@@ -47,5 +49,11 @@ def edit_related():
     title = request.query.title
     week = getWeek()
     checkTicket(case_number,editor,title)
+
+@route('/sailale', method='GET')
+def sailale():
+    purchaseCall(request.query.email)
+    emailCall(request.query.email)
+    redirect('https://cb.sailthru.com/page/2d8/sailaleconfirm', code=302)
 
 run(host='0.0.0.0', port=1337)
