@@ -53,7 +53,7 @@ def edit_related():
 @route('/sailale', method='GET')
 def sailale():
     purchaseCall(request.query.email)
-    emailCall(request.query.email)
+    emailCall(request.query.email,request.query.name)
     redirect('https://cb.sailthru.com/page/2d8/sailaleconfirm', code=302)
 
 run(host='0.0.0.0', port=1337)

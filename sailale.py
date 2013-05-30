@@ -13,8 +13,8 @@ def purchaseCall(email):
     body = response.get_body()
     print body
 
-def emailCall(email):
-    data={'template':'SailAle Confirm',"vars":{"user":email},'email':'sailale@sailthru.com'}
+def emailCall(email,name):
+    data={'template':'SailAle Confirm',"vars":{"invitee_email":email, "invitee_name":name},'email':'sailale@sailthru.com'}
     print data
     response = sailthru_client.api_post("send",data)
     body = response.get_body()
