@@ -6,26 +6,22 @@ import argparse
 import pprint
 from BeautifulSoup import BeautifulSoup
 from pymongo import Connection
-from colorama import init, Fore
+from color import colorPrint
 
 
 #consider a setting file
 connection = Connection('localhost', 27017)
 db = connection.lighthouse
 
-def colorPrint(state,message):
-    """ Prints red if state is 0, green if state is 1 """
-    if state == 0:
-        print(Fore.RED + message + Fore.RESET)
-    if state == 1:
-        print (Fore.GREEN + message + Fore.RESET)
-
 def kickIt(new_ticket,editor,title):
     ticket_related = runEval(new_ticket)
-    #if ticket_related: 
-    updateRelated(new_ticket,ticket_related,editor,title)
-    #else:
-    #    colorPrint(0,"no ticket related")
+    #updateRelated(new_ticket,ticket_related,editor,title)
+
+    #in test
+    if ticket_related: 
+        updateRelated(new_ticket,ticket_related,editor,title)
+    else:
+        colorPrint(0,"no ticket related")
 
 def runEval(new_ticket):
     ticket_related = ticketToString(new_ticket) 
