@@ -29,19 +29,19 @@ def kickIt(new_ticket,editor,title):
 
 def runEval(new_ticket):
     ticket_related = ticketToString(new_ticket) 
-    #TODO 
-    #db_field = getRelatedProperty(ticket_related)
-    #if checkDupe(db_field,ticket_related) == False:
-    #    addRelated(new_ticket,ticket_related)
-    #    checkTicket(new_ticket,editor,title)
+    #This should work but needs testing 
+    db_field = getRelatedProperty(ticket_related)
+    if checkDupe(db_field,ticket_related) == False:
+        addRelated(new_ticket,ticket_related)
+        checkTicket(new_ticket,editor,title)
     return ticket_related
 
 def checkTicket(new_ticket,editor,title):
     ticket = db['related_ticket'].find({"case_number":new_ticket,"related_to":{ '$exists': True}})
     if ticket.count() == 1:
        colorPrint(0,"This ticket was already processed. Let's check if its database value is equal to its fogbugz value --- not completed")
-       #TODO
-       #runEval(new_ticket)
+       #IN TEST
+       runEval(new_ticket)
     else:
         colorPrint(1,"let this ticket go through the normal process, it had no related_to property") 
         kickIt(new_ticket,editor,title)
@@ -58,8 +58,7 @@ def ticketToString(new_ticket):
     except AttributeError:
         colorPrint(0,"This ticket has no related tickets")
         raise
-"""
-#TODO
+#IN TEST
 def getRelatedProperty(new_ticket):
     db_entry = db['related_ticket'].find({"case_number":new_ticket})
     for ticket in db_entry:
@@ -72,7 +71,6 @@ def checkDupe(db_field,ticket_related):
     else:
         print "no, update with the new db field"
         return False
-"""
 
 def updateRelated(new_ticket,ticket_related,editor,title):
     colorPrint(1, "updating " + ticket_related + " with " + new_ticket)
